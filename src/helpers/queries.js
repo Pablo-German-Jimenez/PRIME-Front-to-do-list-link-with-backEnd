@@ -3,8 +3,8 @@ console.log(taskList)
 
 export const getTasks = async () => {
     try{
-        const response = await fetch(taskList);
-        return response;
+        const dataParse = await fetch(taskList);
+        return dataParse;
     }catch(error){
         console.error(error)
         return null;

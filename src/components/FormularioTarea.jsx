@@ -22,8 +22,11 @@ const FormularioTarea = () => {
   const obtainTask = async () => {
     const response = await getTasks();
     if (response.status === 200) {
-      const data = await getTasks.json();
-      setTarea(data);
+      
+      const data = await response.json();
+      console.log(data);
+      //setTarea(data);
+      
     }
   };
 
