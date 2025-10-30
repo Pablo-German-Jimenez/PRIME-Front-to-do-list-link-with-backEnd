@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import ListaTarea from "./ListaTarea";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+import { getTasks } from "../helpers/queries";
 
 const FormularioTarea = () => {
   const {
@@ -12,17 +13,22 @@ const FormularioTarea = () => {
     formState: { errors },
   } = useForm();
 
-  //para mostrar desde el principio un array vacio que esta en localStorage
-  const tareasEnLocalStorage = JSON.parse(localStorage.getItem("tareasKey"))||[];
+  const [tarea, setTarea] = useState([]);
 
-  //desestructuración para utilizar hooks del useState y controlar cambio de estados,mediante setTarea, se inicializa con variable de localstorage con un array vacio.
-  const [tarea, setTarea] = useState(tareasEnLocalStorage);
-
-
-  // useEfffect() hook para el ciclo de vida del componente, ahora guarda un string que debe ser un array 
   useEffect(() => {
-    localStorage.setItem("tareasKey", JSON.stringify(tarea), [tarea]);
+    obtainTask(), [];
   });
+
+  const obtainTask = async () => {
+    const response = await getTasks();
+    if (response.status === 200) {
+      
+      const data = await response.json();
+      console.log(data);
+      //setTarea(data);
+      
+    }
+  };
 
   const onSubmit = (data) => {
     console.log(data.tarea);

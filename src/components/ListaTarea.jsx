@@ -6,7 +6,7 @@ const ListaTarea = ({tareasProps,borrarTarea}) => {
     <div>
       <ListGroup className='border border-danger'>
         {
-          tareasProps.map((tareaMap,indice)=><ItemsTarea key={indice} desdeListaTarea={tareaMap} borrarTarea={borrarTarea}/>)
+          tareasProps.map((tareaMap)=><ItemsTarea key={tareaMap._id} desdeListaTarea={tareaMap} borrarTarea={borrarTarea}/>)
         }
       
       </ListGroup>
